@@ -43,7 +43,7 @@ class TestAttackClient:
         attack_client = AttackClient()
 
         # WHEN
-        attacks = attack_client.get_all_attack()
+        attacks = attack_client.get_all_attacks()
 
         # THEN
         assert attacks is not None

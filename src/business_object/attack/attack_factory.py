@@ -8,13 +8,15 @@ from utils.singleton import Singleton
 class AttackFactory(metaclass=Singleton):
     def instantiate_attack(
         self,
-        type: str,
+        attack_type: str,
         id: int,
         power: int = None,
         name: str = None,
         description: str = None,
         accuracy: int = None,
         element: str = None,
+        *args,
+        **kwargs
     ) -> AbstractAttack:
         """
         Instantiate an AbstractAttack based on the provided type
@@ -32,7 +34,7 @@ class AttackFactory(metaclass=Singleton):
         :rtype: AbstractAttack
         """
         attack = None
-        if type == "special attack":
+        if attack_type == "special attack":
             attack = SpecialFormulaAttack(
                 id=id,
                 power=power,
@@ -41,7 +43,7 @@ class AttackFactory(metaclass=Singleton):
                 accuracy=accuracy,
                 element=element,
             )
-        elif type == "physical attack":
+        elif attack_type == "physical attack":
             attack = PhysicalFormulaAttack(
                 id,
                 power=power,
@@ -50,7 +52,7 @@ class AttackFactory(metaclass=Singleton):
                 accuracy=accuracy,
                 element=element,
             )
-        elif type == "fixed damage":
+        elif attack_type == "fixed damage":
             attack = FixedDamageAttack(
                 id,
                 power=power,
